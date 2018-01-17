@@ -3,6 +3,7 @@ import { Card, Grid } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
 import Campaign from '../../ethereum/campaign';
 import ContributeForm from '../../components/ContributeForm';
+import web3 from '../../ethereum/web3';
 
 class CampaignShow extends Component {
   static async getInitialProps(props) {
@@ -36,6 +37,13 @@ class CampaignShow extends Component {
         style: { overflowWrap: 'break-word' },
       },
       {
+        header: minimumContribution,
+        meta: 'Minimum Contribution (wei)',
+        description: `
+          You must contribute at least this much wei to become an approver
+        `,
+      },
+      {
         header: requestsCount,
         meta: 'Number of Requests',
         description: `
@@ -44,24 +52,17 @@ class CampaignShow extends Component {
           `,
       },
       {
-        header: balance,
-        meta: 'Coampaign Balance (ether)',
-        description: `
-          The balance is how much money this campaign has left to spend.`,
-      },
-      {
-        header: minimumContribution,
-        meta: 'Minimum Contribution (wei)',
-        description: `
-          You must contribute at least this much wei to become an approver
-        `,
-      },
-      {
         header: approversCount,
         meta: 'Number of Approvers',
         description: `
           Number of people who have already donated to this campaign
         `,
+      },
+      {
+        header: web3.utils.fromWei(balance, 'ether'),
+        meta: 'Coampaign Balance (ether)',
+        description: `
+          The balance is how much money this campaign has left to spend.`,
       },
     ];
     return <Card.Group items={items} />;
