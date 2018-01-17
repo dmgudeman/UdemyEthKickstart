@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Grid } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
 import Campaign from '../../ethereum/campaign';
 import ContributeForm from '../../components/ContributeForm';
@@ -37,7 +37,7 @@ class CampaignShow extends Component {
       },
       {
         header: requestsCount,
-        meta: "Number of Requests",
+        meta: 'Number of Requests',
         description: `
           A request tried to withdraw money from the contract.
           Requests must be approved by approvers
@@ -70,9 +70,13 @@ class CampaignShow extends Component {
   render() {
     return (
       <Layout>
-        <h1>CampaignShow</h1>
-        {this.renderCards()}
-        <ContributeForm />
+        <h3>CampaignShow</h3>
+        <Grid>
+          <Grid.Column width={10}>{this.renderCards()}</Grid.Column>
+          <Grid.Column width={6}>
+            <ContributeForm />
+          </Grid.Column>
+        </Grid>
       </Layout>
     );
   }
