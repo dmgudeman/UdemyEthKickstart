@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
 import Campaign from '../../ethereum/campaign';
+import ContributeForm from '../../components/ContributeForm';
 
 class CampaignShow extends Component {
   static async getInitialProps(props) {
@@ -34,11 +35,34 @@ class CampaignShow extends Component {
           'The manager created this campaign and can create requests',
         style: { overflowWrap: 'break-word' },
       },
-      // {
-      //   header: ,
-      //   meta: ,
-      //   description: ,
-      // },
+      {
+        header: requestsCount,
+        meta: "Number of Requests",
+        description: `
+          A request tried to withdraw money from the contract.
+          Requests must be approved by approvers
+          `,
+      },
+      {
+        header: balance,
+        meta: 'Coampaign Balance (ether)',
+        description: `
+          The balance is how much money this campaign has left to spend.`,
+      },
+      {
+        header: minimumContribution,
+        meta: 'Minimum Contribution (wei)',
+        description: `
+          You must contribute at least this much wei to become an approver
+        `,
+      },
+      {
+        header: approversCount,
+        meta: 'Number of Approvers',
+        description: `
+          Number of people who have already donated to this campaign
+        `,
+      },
     ];
     return <Card.Group items={items} />;
   }
@@ -46,8 +70,9 @@ class CampaignShow extends Component {
   render() {
     return (
       <Layout>
-        <h1>Hi there CampaignShow</h1>
+        <h1>CampaignShow</h1>
         {this.renderCards()}
+        <ContributeForm />
       </Layout>
     );
   }
