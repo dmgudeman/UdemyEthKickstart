@@ -38,6 +38,9 @@ class RequestNew extends Component {
   render() {
     return (
       <Layout>
+        <Link route={`/campaigns/${this.props.addrss}/requests`}>
+          <a>Back</a>
+        </Link>
         <h3>Create a Request</h3>
         <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
           <Form.Field>
